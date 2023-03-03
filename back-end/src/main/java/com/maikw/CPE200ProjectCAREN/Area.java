@@ -182,12 +182,12 @@ public class Area {
 //    public void removeAntibody(Antibody dummy)
 //    public void evaluate()
 //    public void snapViruses()
+//    public int alertLevel()
+//    public boolean isTaken()
 
 //    Pure functions:
 //
-//    public int alertLevel()
 //    public boolean canPlace(double positionX, double positionY)
-//    public boolean isTaken()
 //    public int getAlertLevel()
 //    public List<Unit> getUnits()
 //    public List<Virus> getViruses()
