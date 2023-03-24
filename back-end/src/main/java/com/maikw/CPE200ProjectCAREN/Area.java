@@ -126,8 +126,7 @@ public class Area {
         viruses.clear();
     }
 
-    // Pure function
-    // Pure function: Doesn't modify state, only return a value base on inputs
+    // Impure function: Output depend on the current state of positionX and positionY (give same input doesn't get the same output)
     // Refactor: Using stream instead of for loop
     public boolean canPlace(double positionX, double positionY){
         return units.stream().noneMatch(u -> u.getPositionX() == positionX && u.getPositionY() == positionY);
@@ -138,6 +137,7 @@ public class Area {
         return this.alertLevel() == 2;
     }
 
+    // Pure function
     // Pure function: Doesn't modify state, only return a value base on inputs
     public int getAlertLevel(){
         return this.alertLevel();
