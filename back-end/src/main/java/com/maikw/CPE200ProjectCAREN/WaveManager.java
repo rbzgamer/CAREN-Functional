@@ -6,88 +6,62 @@ import java.util.List;
 import java.util.Map;
 
 public class WaveManager {
-    protected Integer maxWaveCount = 5;
-    protected Integer currentWaveCount = 0;
-    protected Integer waveCount = 1;
-    protected Integer timeBetweenWave  = 20;
-    protected List<Virus> viruses1;
-    protected List<Virus> viruses2;
-    protected List<Virus> viruses3;
-    protected Map<String,List<Virus>> allwave ;
-    private final boolean DEBUG = true;
+    // Refactor: Remove unnecessary constructor (move setup things to here) and remove some unnecessary variable
+    private Integer maxWaveCount = Config.maxWave;
+    private Integer currentWaveCount = 0;
+    private Integer waveCount = 1;
+    private Integer timeBetweenWave = 20;
+    private Map<String, List<Virus>> allWaves = new HashMap<>();
 
-
-
-    public WaveManager(){
-        this.maxWaveCount = Config.maxWave;
-        this.viruses1 = new ArrayList<>();
-        this.viruses2 = new ArrayList<>();
-        this.viruses3 = new ArrayList<>();
-        this.allwave = new HashMap<>();
-
-    }
-
-    private void createUnitVirus(int area1melee, int area1ranged, int area1aoe) {
-
-        for(int i = 0 ; i < area1melee;i++){
-            viruses1.add(UnitFactory.createVirus( "melee"));
-            viruses2.add(UnitFactory.createVirus( "melee"));
-            viruses3.add(UnitFactory.createVirus( "melee"));
+    // Impure function
+    // Impure function: 
+    private List<Virus> createVirusList(int areaMelee, int areaRanged, int areaAOE) {
+        List<Virus> viruses = new ArrayList<>();
+        for (int i = 0; i < areaMelee; i++) {
+            viruses.add(UnitFactory.createVirus("melee"));
         }
-        for(int i = 0 ; i < area1ranged ;i++){
-            viruses1.add(UnitFactory.createVirus( "ranged"));
-            viruses2.add(UnitFactory.createVirus( "ranged"));
-            viruses3.add(UnitFactory.createVirus( "ranged"));
+        for (int i = 0; i < areaRanged; i++) {
+            viruses.add(UnitFactory.createVirus("ranged"));
         }
-        for (int i = 0 ; i < area1aoe;i++){
-            viruses1.add(UnitFactory.createVirus( "aoe"));
-            viruses2.add(UnitFactory.createVirus( "aoe"));
-            viruses3.add(UnitFactory.createVirus( "aoe"));
+        for (int i = 0; i < areaAOE; i++) {
+            viruses.add(UnitFactory.createVirus("aoe"));
         }
-
-        allwave.put("Wave_"+ waveCount.toString() +"Area_"+0, viruses1);
-        allwave.put("Wave_"+ waveCount.toString() +"Area_"+1, viruses2);
-        allwave.put("Wave_"+ waveCount.toString() +"Area_"+2, viruses3);
-        waveCount+=1;
-        this.viruses1 = new ArrayList<>();
-        this.viruses2 = new ArrayList<>();
-        this.viruses3 = new ArrayList<>();
+        return viruses;
     }
 
     public void addVirus() {
-            for (int i = 0 ; i < maxWaveCount ; ++i) {
-                createUnitVirus(Config.meleeCountPerWave[i], Config.rangedCountPerWave[i], Config.aoeCountPerWave[i]);
-                if(DEBUG) System.out.println(Config.meleeCountPerWave[i]+" , " + Config.rangedCountPerWave[i] + " , "+ Config.aoeCountPerWave[i]);
-            }
-
-//        createUnitVirus(2,3 ,3 );
-//        createUnitVirus(2,3 ,3 );
-//        createUnitVirus(2,3 ,3 );
-//        createUnitVirus(2,3 ,3 );
-//        createUnitVirus(2,3 ,3 );
-
+        for (int i = 0; i < maxWaveCount; i++) {
+            List<Virus> viruses1 = createVirusList(Config.meleeCountPerWave[i], Config.rangedCountPerWave[i], Config.aoeCountPerWave[i]);
+            List<Virus> viruses2 = createVirusList(Config.meleeCountPerWave[i], Config.rangedCountPerWave[i], Config.aoeCountPerWave[i]);
+            List<Virus> viruses3 = createVirusList(Config.meleeCountPerWave[i], Config.rangedCountPerWave[i], Config.aoeCountPerWave[i]);
+            allWaves.put("Wave_" + waveCount + "_Area_0", viruses1);
+            allWaves.put("Wave_" + waveCount + "_Area_1", viruses2);
+            allWaves.put("Wave_" + waveCount + "_Area_2", viruses3);
+            waveCount++;
+        }
     }
 
-
-
-    public Integer getMaxWaveCount() {
-        return maxWaveCount;
-    }
-
-    public Integer getCurrentWaveCount() {
-        return currentWaveCount;
-    }
-
-    public Integer getTimeBetweenWave() {
-        return timeBetweenWave;
-    }
-
-    public void setCurrentWaveCount(int currentWaveCount){
+    public void setCurrentWaveCount(int currentWaveCount) {
         this.currentWaveCount = currentWaveCount;
     }
 
-    public void setMaxWaveCount(Integer maxWaveCount) {
+    public void setMaxWaveCount(int maxWaveCount) {
         this.maxWaveCount = maxWaveCount;
     }
 
+    // Pure function
+    // Pure function: Doesn't modify state, only return a value base on inputs
+    public int getMaxWaveCount() {
+        return maxWaveCount;
+    }
+
+    // Pure function: Doesn't modify state, only return a value base on inputs
+    public int getCurrentWaveCount() {
+        return currentWaveCount;
+    }
+
+    // Pure function: Doesn't modify state, only return a value base on inputs
+    public int getTimeBetweenWave() {
+        return timeBetweenWave;
+    }
 }

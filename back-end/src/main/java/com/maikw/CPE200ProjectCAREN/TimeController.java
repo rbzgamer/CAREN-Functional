@@ -17,13 +17,6 @@ public class TimeController{
         this.gameHandler = gameHandler;
     }
 
-//    @CrossOrigin
-//    @PostMapping(path = "/playbar")
-//    public String playBar(@RequestBody String type){
-//         timeManager.setInputType(type);
-//         return "Now is" +type;
-//    }
-
     @CrossOrigin
     @PostMapping(path = "/getspeedmultiplier")
     public ApiData_SpeedMultiplierReturnData getSpeedMultiplier(@RequestBody ApiData_Base data){
@@ -38,7 +31,7 @@ public class TimeController{
                 returnData.setMultiplier(0);
                 break;
             case "fastforward":
-                returnData.setMultiplier(timeManager.getFastForwardMuliplier());
+                returnData.setMultiplier(timeManager.getFastForwardMultiplier());
                 break;
             case "slowdown":
                 returnData.setMultiplier(timeManager.getSlowDownMultiplier());
