@@ -14,8 +14,8 @@ public class WaveManager {
     private Map<String, List<Virus>> allWaves = new HashMap<>();
 
     // Impure function
-    // Impure function: 
-    private List<Virus> createVirusList(int areaMelee, int areaRanged, int areaAOE) {
+    // Impure function: Modifies state of viruses by creating a new list of viruses
+    private List<Virus> createUnitVirus(int areaMelee, int areaRanged, int areaAOE) {
         List<Virus> viruses = new ArrayList<>();
         for (int i = 0; i < areaMelee; i++) {
             viruses.add(UnitFactory.createVirus("melee"));
@@ -29,11 +29,12 @@ public class WaveManager {
         return viruses;
     }
 
+    // Impure function: Modifies state of viruses, waveCount and allWaves
     public void addVirus() {
         for (int i = 0; i < maxWaveCount; i++) {
-            List<Virus> viruses1 = createVirusList(Config.meleeCountPerWave[i], Config.rangedCountPerWave[i], Config.aoeCountPerWave[i]);
-            List<Virus> viruses2 = createVirusList(Config.meleeCountPerWave[i], Config.rangedCountPerWave[i], Config.aoeCountPerWave[i]);
-            List<Virus> viruses3 = createVirusList(Config.meleeCountPerWave[i], Config.rangedCountPerWave[i], Config.aoeCountPerWave[i]);
+            List<Virus> viruses1 = createUnitVirus(Config.meleeCountPerWave[i], Config.rangedCountPerWave[i], Config.aoeCountPerWave[i]);
+            List<Virus> viruses2 = createUnitVirus(Config.meleeCountPerWave[i], Config.rangedCountPerWave[i], Config.aoeCountPerWave[i]);
+            List<Virus> viruses3 = createUnitVirus(Config.meleeCountPerWave[i], Config.rangedCountPerWave[i], Config.aoeCountPerWave[i]);
             allWaves.put("Wave_" + waveCount + "_Area_0", viruses1);
             allWaves.put("Wave_" + waveCount + "_Area_1", viruses2);
             allWaves.put("Wave_" + waveCount + "_Area_2", viruses3);
@@ -41,10 +42,12 @@ public class WaveManager {
         }
     }
 
+    // Impure function: Modifies state of currentWaveCount
     public void setCurrentWaveCount(int currentWaveCount) {
         this.currentWaveCount = currentWaveCount;
     }
 
+    // Impure function: Modifies state of maxWaveCount
     public void setMaxWaveCount(int maxWaveCount) {
         this.maxWaveCount = maxWaveCount;
     }
