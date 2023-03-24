@@ -25,6 +25,7 @@ public class Antibody extends Unit{
     }
 
     // Separate setup things into method
+    // Impure function: Modifies state of maxHealth, attackDamage, attackRange and moveSpeed
     private void setupMelee(){
         this.maxHealth = Config.antibodyMeleeHealth;
         this.attackDamage = Config.antibodyMeleeDamage;
@@ -32,6 +33,7 @@ public class Antibody extends Unit{
         this.moveSpeed = Config.meleeMoveSpeed;
     }
 
+    // Impure function: Modifies state of maxHealth, attackDamage, attackRange and moveSpeed
     private void setupRanged(){
         this.maxHealth = Config.antibodyRangedHealth;
         this.attackDamage = Config.antibodyRangedDamage;
@@ -39,6 +41,7 @@ public class Antibody extends Unit{
         this.moveSpeed = Config.rangedMoveSpeed;
     }
 
+    // Impure function: Modifies state of maxHealth, attackDamage, attackRange and moveSpeed
     private void setupAoe(){
         this.maxHealth = Config.antibodyAoeHealth;
         this.attackDamage = Config.antibodyAoeDamage;
@@ -47,7 +50,7 @@ public class Antibody extends Unit{
         this.moveSpeed = Config.aoeMoveSpeed;
     }
 
-    // Impure function: modifies state of Antibody and virusQueue
+    // Impure function: Modifies state of Antibody and virusQueue
     public void virusToSpawn(List<Virus> q){
         Virus reborn = UnitFactory.createVirus(this.getType());
         this.area.removeAntibody(this);
@@ -56,10 +59,10 @@ public class Antibody extends Unit{
         reborn.setPositionY(this.getPositionY());
 
     }
-    
-    // Pure function: doesn't modify state, only return a value base on inputs
+
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public String getUnitClass(){
         return "antibody";
     }
-    
+
 }

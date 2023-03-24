@@ -1,10 +1,10 @@
 {
-  "name": "cpe200-project-caren",
+  "name": "caren-functional",
   "version": "0.1.0",
-  "description": "CPE200 Semester 2 2021 Project CAREN",
+  "description": "(REWRITE OF CPE200 Semester 2 2021 Project CAREN)",
   "repository": {
     "type": "git",
-    "url": "git@github.com:iambaangkok/CPE200-Project-CAREN.git"
+    "url": "git@github.com:rbzgamer/CAREN-Functional.git"
   },
   "keywords": [
     "rest",
@@ -14,9 +14,9 @@
   "author": "Baangkok Vanijyananda, Ukrit Kosonsomboon, Nonthawat Kongsichai",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/iambaangkok/CPE200-Project-CAREN/issues"
+    "url": "https://github.com/rbzgamer/CAREN-Functional/issues"
   },
-  "homepage": "https://github.com/iambaangkok/CPE200-Project-CAREN",
+  "homepage": "https://github.com/rbzgamer/CAREN-Functional",
   "private": true,
   "dependencies": {
     "@fontsource/press-start-2p": "^4.5.3",
