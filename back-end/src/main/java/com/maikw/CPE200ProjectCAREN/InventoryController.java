@@ -47,6 +47,7 @@ public class InventoryController {
                 }
             }
         }
+        assert unit != null;
         if (unit.getUnitClass().equals("antibody")) {
             if(shop.getCurrentCredit() - unit.moveCost >= shop.getMinCredit()){
                 shop.setCurrentCredit(shop.getCurrentCredit() - unit.moveCost);
@@ -101,7 +102,7 @@ public class InventoryController {
                             game.getQueueAntibobyArea1().add(ab);
                         }else if(areaNumber == 2){
                             game.getQueueAntibobyArea2().add(ab);
-                        }else if(areaNumber == 3){
+                        }else {
                             game.getQueueAntibobyArea3().add(ab);
                         }
                         ab.setPositionX(positionX); ab.setPositionY(positionY);
@@ -116,7 +117,7 @@ public class InventoryController {
                             game.getQueueAntibobyArea1().add(ab);
                         }else if(areaNumber == 2){
                             game.getQueueAntibobyArea2().add(ab);
-                        }else if(areaNumber == 3){
+                        }else {
                             game.getQueueAntibobyArea3().add(ab);
                         }
                         ab.setPositionX(positionX); ab.setPositionY(positionY);
@@ -131,7 +132,7 @@ public class InventoryController {
                             game.getQueueAntibobyArea1().add(ab);
                         }else if(areaNumber == 2){
                             game.getQueueAntibobyArea2().add(ab);
-                        }else if(areaNumber == 3){
+                        }else {
                             game.getQueueAntibobyArea3().add(ab);
                         }
                         ab.setPositionX(positionX); ab.setPositionY(positionY);
