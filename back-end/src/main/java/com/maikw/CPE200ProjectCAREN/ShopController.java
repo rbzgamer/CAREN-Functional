@@ -26,17 +26,15 @@ public class ShopController {
     @PostMapping(path = "/buyunit")
     public String buyUnit(@RequestBody ApiData_BuyUnit data){
         Shop shop = gameHandler.getGame(data).getShop();
+        shop.buy(data.getType());
         switch (data.getType()) {
             case "melee" -> {
-                shop.buyMelee();
                 return "Buy Melee Success";
             }
             case "ranged" -> {
-                shop.buyRanged();
                 return "Buy Ranged Success";
             }
             case "aoe" -> {
-                shop.buyAoe();
                 return "Buy AOE Success";
             }
         }

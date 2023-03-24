@@ -12,7 +12,7 @@ public class ShopTest {
     void buyMelee() {
         shop.setInventory(inventory);
         int baseCredit = shop.getCurrentCredit();
-        shop.buyMelee(); shop.buyMelee();
+        shop.buy("melee"); shop.buy("melee");
         assertEquals(shop.getCurrentCredit(), baseCredit - (2*shop.getMeleePrice()));
     }
 
@@ -20,7 +20,7 @@ public class ShopTest {
     void buyRanged() {
         shop.setInventory(inventory);
         int baseCredit = shop.getCurrentCredit();
-        shop.buyRanged(); shop.buyRanged();
+        shop.buy("ranged"); shop.buy("ranged");
         assertEquals(shop.getCurrentCredit(), baseCredit - (2*shop.getRangedPrice()));
     }
 
@@ -28,7 +28,7 @@ public class ShopTest {
     void buyAOE() {
         shop.setInventory(inventory);
         int baseCredit = shop.getCurrentCredit();
-        shop.buyAoe(); shop.buyAoe();
+        shop.buy("aoe"); shop.buy("aoe");
         assertEquals(shop.getCurrentCredit(), baseCredit - (2*shop.getAoePrice()));
     }
 

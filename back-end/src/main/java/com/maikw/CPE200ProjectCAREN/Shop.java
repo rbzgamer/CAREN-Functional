@@ -8,8 +8,8 @@ public class Shop {
     protected int rangedPrice;
     protected int aoePrice;
     protected Inventory inventory;
-    private final boolean DEBUG = true;
 
+    // Constructor
     public Shop() {
         this.maxCredit = 9999;
         this.minCredit = 0;
@@ -19,33 +19,21 @@ public class Shop {
         this.aoePrice = Config.aoePrice;
     }
 
-    public void buyMelee(){
-        if(canBuy("melee")){
-            inventory.increaseMeleeCount();
-            currentCredit -= meleePrice;
-        }else{
-            if(DEBUG) System.out.println("You have no enough credit.");
+    // Impure function
+    // Impure function: Modifies state of currentCredit and inventory
+    // Refactor: Combining 3 methods of buying into 1 method
+    public void buy(String type){
+        if(canBuy(type)){
+            inventory.increaseCount(type);
+            switch (type) {
+                case "melee" -> currentCredit -= meleePrice;
+                case "ranged" -> currentCredit -= rangedPrice;
+                case "aoe" -> currentCredit -= aoePrice;
+            }
         }
     }
 
-    public void buyRanged(){
-        if(canBuy("ranged")){
-            inventory.increaseRangedCount();
-            currentCredit -= rangedPrice;
-        }else{
-            if(DEBUG) System.out.println("You have no enough credit.");
-        }
-    }
-
-    public void buyAoe(){
-        if(canBuy("aoe")){
-            inventory.increaseAoeCount();
-            currentCredit -= aoePrice;
-        }else{
-            if(DEBUG) System.out.println("You have no enough credit.");
-        }
-    }
-
+    // Impure function: Output depend on the current state of currentCredit (give same input doesn't get the same output)
     public boolean canBuy(String type){
         return switch (type) {
             case "melee" -> currentCredit >= meleePrice;
@@ -55,39 +43,50 @@ public class Shop {
         };
     }
 
-    public int getMaxCredit() {
-        return maxCredit;
-    }
-
-    public int getCurrentCredit() {
-        return currentCredit;
-    }
-
-    public int getMeleePrice() {
-        return meleePrice;
-    }
-
-    public int getRangedPrice() {
-        return rangedPrice;
-    }
-
-    public int getAoePrice() {
-        return aoePrice;
-    }
-
-    public int getMinCredit() {
-        return minCredit;
-    }
-
-    public Inventory getInventory() {
-        return inventory;
-    }
-
+    // Impure function: Modifies state of inventory
     public void setInventory(Inventory inventory){
         this.inventory = inventory;
     }
 
+    // Impure function: Modifies state of currentCredit
     public void setCurrentCredit(int currentCredit) {
         this.currentCredit = currentCredit;
     }
+
+    // Pure function
+    // Pure function: Doesn't modify state, only return a value base on inputs
+    public int getMaxCredit() {
+        return this.maxCredit;
+    }
+
+    // Pure function: Doesn't modify state, only return a value base on inputs
+    public int getCurrentCredit() {
+        return this.currentCredit;
+    }
+
+    // Pure function: Doesn't modify state, only return a value base on inputs
+    public int getMeleePrice() {
+        return this.meleePrice;
+    }
+
+    // Pure function: Doesn't modify state, only return a value base on inputs
+    public int getRangedPrice() {
+        return this.rangedPrice;
+    }
+
+    // Pure function: Doesn't modify state, only return a value base on inputs
+    public int getAoePrice() {
+        return this.aoePrice;
+    }
+
+    // Pure function: Doesn't modify state, only return a value base on inputs
+    public int getMinCredit() {
+        return this.minCredit;
+    }
+
+    // Pure function: Doesn't modify state, only return a value base on inputs
+    public Inventory getInventory() {
+        return this.inventory;
+    }
+
 }
