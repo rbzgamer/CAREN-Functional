@@ -54,15 +54,15 @@ public class InventoryController {
                 unit.setCurrentHealth(0);
                 switch (unit.getType()) {
                     case "melee" -> {
-                        inventory.increaseMeleeCount();
+                        inventory.increaseCount("melee");
                         return "Store Melee Success";
                     }
                     case "ranged" -> {
-                        inventory.increaseRangedCount();
+                        inventory.increaseCount("ranged");
                         return "Store Ranged Success";
                     }
                     case "aoe" -> {
-                        inventory.increaseAoeCount();
+                        inventory.increaseCount("aoe");
                         return "Store AOE Success";
                     }
                 }
@@ -96,15 +96,9 @@ public class InventoryController {
             switch (type) {
                 case "melee" -> {
                     if(inventory.canPickup(type)){
-                        inventory.decreaseMeleeCount();
+                        inventory.decreaseCount("melee");
                         if(areaNumber == 1){
-//                            System.out.println("q1");
                             game.getQueueAntibobyArea1().add(ab);
-//                            System.out.println(game.getQueueAntibobyArea1());
-//                            System.out.println(game.getAreas().get(0).getAntibodies());
-//                            game.getAreas().get(0).addAllAntibody(game.getQueueAntibobyArea1());
-//                            System.out.println(game.getQueueAntibobyArea1());
-//                            System.out.println(game.getAreas().get(0).getAntibodies());
                         }else if(areaNumber == 2){
                             game.getQueueAntibobyArea2().add(ab);
                         }else if(areaNumber == 3){
@@ -117,7 +111,7 @@ public class InventoryController {
                 }
                 case "ranged" -> {
                     if(inventory.canPickup(type)){
-                        inventory.decreaseRangedCount();
+                        inventory.decreaseCount("ranged");
                         if(areaNumber == 1){
                             game.getQueueAntibobyArea1().add(ab);
                         }else if(areaNumber == 2){
@@ -132,7 +126,7 @@ public class InventoryController {
                 }
                 case "aoe" -> {
                     if(inventory.canPickup(type)){
-                        inventory.decreaseAoeCount();
+                        inventory.decreaseCount("aoe");
                         if(areaNumber == 1){
                             game.getQueueAntibobyArea1().add(ab);
                         }else if(areaNumber == 2){
