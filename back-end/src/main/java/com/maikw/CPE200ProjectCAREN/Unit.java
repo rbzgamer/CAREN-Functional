@@ -33,6 +33,7 @@ public class Unit {
     protected boolean toSpawn = true;
     private final boolean DEBUG = true;
 
+    //constructor
     public Unit(String name, String type, String geneticCode){
         variables = new HashMap<>();
         this.name = name;
@@ -46,11 +47,12 @@ public class Unit {
         try{
             programNode = be.parseProgram();
         }catch(SyntaxError e){
-            System.out.println("parse error: " + e.getMessage() + " " +e.getMessage().length());
+
             e.printStackTrace();
         }
     }
 
+    //Impure function: Modifies value of range
     public void move(String direction){
         Unit unit = findClosestUnitDirection("all",direction);
         double range = 0;
@@ -61,38 +63,35 @@ public class Unit {
         }
         if (range > this.dangerRange){
             positionEval(direction);
-            if(DEBUG) {
-                System.out.println("Unit " + name + " moved " + direction);
-                System.out.println(positionX + " , " + positionY + " <--------");
-            }
-        }else{
-            if(DEBUG) System.out.println("There is " + unit.getName() + " there. Unit " + name + " can't move to " + direction);
         }
     }
 
+    //Impure function: Modifies state of unit
     public void attack(String direction){
         String targetClass = "";
         if(this.unitClass.equals("virus")) targetClass = "antibody";
         else if(this.unitClass.equals("antibody")) targetClass = "virus";
         attackEval(targetClass, direction);
-        if(DEBUG) System.out.println("Unit " + name + " attacked " + direction);
+
     }
 
+    //Impure function: Modifies state of unit
     public void attack(Unit target){
         target.takeDamage(attackDamage);
         bloodSteal();
-        if(DEBUG) System.out.println("Unit " + target.name + "received damage current hp = " + target.currentHealth);
+
     }
 
+    //Impure function: Modifies value of currentHealth 
     private void bloodSteal() {
         if(currentHealth + lifeSteal <= maxHealth){
             currentHealth += lifeSteal;
         }else{
             currentHealth = maxHealth;
         }
-        if(DEBUG) System.out.println("I stole your health --> " + lifeSteal + " HP");
     }
 
+    //Impure function: Modifies value of currentHealth
     public void takeDamage(int dmg){
         if(dmg >= 0){
             if(!isAlive()){
@@ -103,8 +102,8 @@ public class Unit {
         }
     }
 
+    //Pure function: Doesn't modify state, only return a value base on inputs
     public int sense(String mode, String direction){
-        if(DEBUG) System.out.println("Unit " + name + " sensed " + mode + " " + direction);
         switch (mode) {
             case "virus" -> {
                 return senseEval("virus");
@@ -119,10 +118,12 @@ public class Unit {
         return 0;
     }
 
+    //Pure function: Doesn't modify state, only return a value base on inputs
     public static double range(Unit a, Unit b){
         return Math.sqrt(Math.pow((a.positionX - b.positionX),2) + Math.pow((a.positionY - b.positionY),2));
     }
 
+    //Impure function: Modifies state of unit's position
     private void positionEval(String direction){
         Unit dummy = UnitFactory.createDummy("melee");
         switch (direction) {
@@ -186,6 +187,7 @@ public class Unit {
 
     }
 
+    //Impure function: Modifies value of angle
     public static double getAngle(Unit a, Unit b){
         double angle = Math.toDegrees(Math.atan2(b.positionY - a.positionY, b.positionX - a.positionX));
 
@@ -196,6 +198,7 @@ public class Unit {
         return angle;
     }
 
+    //Pure function: Doesn't modify state, only return a value base on inputs
     public static int directionValue(double angle, String direction){
         if(direction.equals("")){
             if(angle >= (90-22.5) && angle <= (90+22.5)){
@@ -233,6 +236,7 @@ public class Unit {
 
     }
 
+    //Pure function: Doesn't modify state, only return a value base on inputs
     public static int directionConverter(String direction){
         return switch (direction) {
             case "up" -> 90;
@@ -247,6 +251,8 @@ public class Unit {
         };
     }
 
+    //Impure function: Modifies value of range, angle and state of unit
+    //Refactor use stream.forEach replace normal for loop
     public void attackEval(String targetUnit, String direction){
         Unit target = findClosestUnitDirection(targetUnit, direction);
         if(target != null){
@@ -257,26 +263,30 @@ public class Unit {
                 this.attack(target);
                 if(this.type.equals("aoe")){
                     List<Unit> units = this.area.getUnits();
-                    for(Unit u : units){
-                        range = range(target,u);
-                        if(range <= this.aoeRadius){
+                    units.stream().forEach(u -> {
+                        if(range(target,u) <= this.aoeRadius){
                             if(!u.getName().equals(this.name) && !u.getName().equals(target.getName())){
                                 attack(u);
                             }
                         }
-                    }
+                    });
+                    // for(Unit u : units){
+                    //     range = range(target,u);
+                    //     if(range <= this.aoeRadius){
+                    //         if(!u.getName().equals(this.name) && !u.getName().equals(target.getName())){
+                    //             attack(u);
+                    //         }
+                    //     }
+                    // }
                 }
             }
-        }else{
-            if(DEBUG) System.out.println("Can't attack, No Unit nearby.");
         }
-
     }
 
+    //Impure function: Modifies value of angle, 
     private int senseEval(String classUnit){
         Unit closestUnit = findClosestUnit(classUnit);
         if(closestUnit == null){
-            if(DEBUG) System.out.println("Closest unit is null");
             return 0;
         }
         double angle = getAngle(this, closestUnit);
@@ -292,10 +302,12 @@ public class Unit {
         return 0;
     }
 
+    //Impure function: Modifies value of baseDirectionValue, classUnit, angle and range
     private int senseUnitEval(List<Unit> units, String direction){
         double min = Integer.MAX_VALUE;
         int baseDirectionValue = directionValue(0, direction);
         String classUnit = "";
+
         for (Unit u : units) {
             double angle = getAngle(this, u);
             int directionValue = directionValue(angle,"");
@@ -331,6 +343,7 @@ public class Unit {
         return 0;
     }
 
+    //Impure function: Modifies value of min and closesUnit
     public Unit findClosestUnit(String classUnit){
         Unit closestUnit = null;
         List<? extends Unit> units = null;
@@ -356,6 +369,7 @@ public class Unit {
         return closestUnit;
     }
 
+    //Impure function: Modifies value of direc, range, angle, min, closestUnit and state of units
     public Unit findClosestUnitDirection(String classUnit, String direction){
         Unit closestUnit = null;
         double direc = directionConverter(direction);
@@ -368,6 +382,7 @@ public class Unit {
             units = this.area.getUnits();
         }
         double min = Integer.MAX_VALUE;
+        
         for (Unit u : units) {
             double range = range(this, u);
             double angle = getAngle(this, u);
@@ -394,112 +409,177 @@ public class Unit {
         return closestUnit;
     }
 
+    //Impure function: Modifies value of returnData
     public ApiData_Vector2 getPosition(){
         ApiData_Vector2 returnData = new ApiData_Vector2();
-        returnData.setX(getPositionX());
-        returnData.setY(getPositionY());
+        returnData.setX(getPositions("x"));
+        returnData.setY(getPositions("y"));
         return returnData;
     }
 
+    //Pure function: Doesn't modify state, only return a value base on inputs
+    //Refactor: Combining 2 methods of get position into 1 method
+    public double getPositions(String position) {
+        double po = 0;
+        switch(position){
+            case "x" -> po = positionX;
+            case "y" -> po = positionY;
+        }
+        return po; 
+    }
+
+    //Pure function: Doesn't modify state, only return a value base on inputs
+    //Refactor: Combining 9 methods of get maxHealth, currentHealth, cost, speed, attackDamage, detectRange, dangerRange, attackRange, lifeSteal into 1 method
+    public int gets(String wantGet){
+        int get = 0;
+        switch(wantGet){
+            case "getMaxHealth" -> get = maxHealth;
+            case "getCurrentHealth" -> get = currentHealth;
+            case "getMoveCost" -> get = moveCost;
+            case "getMoveSpeed" -> get = moveSpeed;
+            case "getAttackDamage" -> get = attackDamage;
+            case "getDetectRange" -> get = detectRange;
+            case "getDangerRange" -> get = dangerRange;
+            case "getAttackRange" -> get = attackRange;
+            case "getLifeSteal" -> get = lifeSteal;
+        }
+        return get;
+    }
+
+    //Pure function: Doesn't modify state, only return a value base on inputs
+    //Refactor: Combining 2 methods of set position into 1 method
+    public void setPosition(String set, double num){
+        switch(set){
+            case "setX" -> this.positionX = num;
+            case "setY" -> this.positionY = num;
+        }
+    }
+
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public double getPositionX() { return positionX; }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public double getPositionY() {
         return positionY;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public Area getArea() {
         return area;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public boolean isAlive(){
         return currentHealth > 0;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public Map<String, Double> getVariables(){
         return variables;
     }
 
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public void evaluate(){
         programNode.evaluate();
     }
-
+    
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public String getName(){
         return name;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public String getType(){
         return type;
     }
 
+    //Pure function: Doesn't modify state, only return a value base on inputs
     public int getMaxHealth() {
         return maxHealth;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public int getCurrentHealth() {
         return currentHealth;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public void setCurrentHealth(int currentHealth) {
         this.currentHealth = currentHealth;
     }
 
+    //Pure function: Doesn't modify state, only return a value base on inputs
     public int getMoveCost() {
         return moveCost;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public int getMoveSpeed() {
         return moveSpeed;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public int getAttackDamage() {
         return attackDamage;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public double getDetectRange() {
         return detectRange;
     }
 
+    //Pure function: Doesn't modify state, only return a value base on inputs
     public double getDangerRange() {
         return dangerRange;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public double getAttackRange() {
         return attackRange;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public int getLifeSteal() {
         return lifeSteal;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public String getUnitClass() {
         return unitClass;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public void setArea(Area area) {
         this.area = area;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public void setPositionX(double positionX) {
         this.positionX = positionX;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public void setPositionY(double positionY) {
         this.positionY = positionY;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public boolean getDidActionCommand(){
         return didActionCommand;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public void setDidActionCommand(boolean state){
         this.didActionCommand = state;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public boolean isToSpawn() {
         return toSpawn;
     }
 
+    // Pure function: Doesn't modify state, only return a value base on inputs
     public void setToSpawn(boolean toSpawn) {
         this.toSpawn = toSpawn;
     }

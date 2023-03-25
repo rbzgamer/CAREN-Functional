@@ -27,206 +27,206 @@ public class UnitTest {
         double baseY = 0;
 
         // melee move speed -> 3
-        unitMelee.setPositionX(baseX); unitMelee.setPositionY(baseY);
+        unitMelee.setPosition("setX", baseX); unitMelee.setPosition("setY", baseY);
         // up
         unitMelee.move("up");
-        assertEquals(unitMelee.getPositionX(), baseX);
-        assertEquals(unitMelee.getPositionY(), baseY + unitMelee.getMoveSpeed());
-        baseX = unitMelee.getPositionX(); baseY = unitMelee.getPositionY();
+        assertEquals(unitMelee.getPositions("x"), baseX);
+        assertEquals(unitMelee.getPositions("y"), baseY + unitMelee.gets("getMoveSpeed"));
+        baseX = unitMelee.getPositions("x"); baseY = unitMelee.getPositions("y");
         // upright
         unitMelee.move("upright");
-        assertEquals(unitMelee.getPositionX(), baseX + unitMelee.getMoveSpeed());
-        assertEquals(unitMelee.getPositionY(), baseY + unitMelee.getMoveSpeed());
-        baseX = unitMelee.getPositionX(); baseY = unitMelee.getPositionY();
+        assertEquals(unitMelee.getPositions("x"), baseX + unitMelee.gets("getMoveSpeed"));
+        assertEquals(unitMelee.getPositions("y"), baseY + unitMelee.gets("getMoveSpeed"));
+        baseX = unitMelee.getPositions("x"); baseY = unitMelee.getPositions("y");
         // right
         unitMelee.move("right");
-        assertEquals(unitMelee.getPositionX(), baseX + unitMelee.getMoveSpeed());
-        assertEquals(unitMelee.getPositionY(), baseY);
-        baseX = unitMelee.getPositionX(); baseY = unitMelee.getPositionY();
+        assertEquals(unitMelee.getPositions("x"), baseX + unitMelee.gets("getMoveSpeed"));
+        assertEquals(unitMelee.getPositions("y"), baseY);
+        baseX = unitMelee.getPositions("x"); baseY = unitMelee.getPositions("y");
         // downright
         unitMelee.move("downright");
-        assertEquals(unitMelee.getPositionX(), baseX + unitMelee.getMoveSpeed());
-        assertEquals(unitMelee.getPositionY(), baseY - unitMelee.getMoveSpeed());
-        baseX = unitMelee.getPositionX(); baseY = unitMelee.getPositionY();
+        assertEquals(unitMelee.getPositions("x"), baseX + unitMelee.gets("getMoveSpeed"));
+        assertEquals(unitMelee.getPositions("y"), baseY - unitMelee.gets("getMoveSpeed"));
+        baseX = unitMelee.getPositions("x"); baseY = unitMelee.getPositions("y");
         // down
         unitMelee.move("down");
-        assertEquals(unitMelee.getPositionX(), baseX);
-        assertEquals(unitMelee.getPositionY(), baseY - unitMelee.getMoveSpeed());
-        baseX = unitMelee.getPositionX(); baseY = unitMelee.getPositionY();
+        assertEquals(unitMelee.getPositions("x"), baseX);
+        assertEquals(unitMelee.getPositions("y"), baseY - unitMelee.gets("getMoveSpeed"));
+        baseX = unitMelee.getPositions("x"); baseY = unitMelee.getPositions("y");
         // downleft
         unitMelee.move("downleft");
-        assertEquals(unitMelee.getPositionX(), baseX - unitMelee.getMoveSpeed());
-        assertEquals(unitMelee.getPositionY(), baseY - unitMelee.getMoveSpeed());
-        baseX = unitMelee.getPositionX(); baseY = unitMelee.getPositionY();
+        assertEquals(unitMelee.getPositions("x"), baseX - unitMelee.gets("getMoveSpeed"));
+        assertEquals(unitMelee.getPositions("y"), baseY - unitMelee.gets("getMoveSpeed"));
+        baseX = unitMelee.getPositions("x"); baseY = unitMelee.getPositions("y");
         // left
         unitMelee.move("left");
-        assertEquals(unitMelee.getPositionX(), baseX - unitMelee.getMoveSpeed());
-        assertEquals(unitMelee.getPositionY(), baseY);
-        baseX = unitMelee.getPositionX(); baseY = unitMelee.getPositionY();
+        assertEquals(unitMelee.getPositions("x"), baseX - unitMelee.gets("getMoveSpeed"));
+        assertEquals(unitMelee.getPositions("y"), baseY);
+        baseX = unitMelee.getPositions("x"); baseY = unitMelee.getPositions("y");
         // upleft
         unitMelee.move("upleft");
-        assertEquals(unitMelee.getPositionX(), baseX - unitMelee.getMoveSpeed());
-        assertEquals(unitMelee.getPositionY(), baseY + unitMelee.getMoveSpeed());
-        baseX = unitMelee.getPositionX(); baseY = unitMelee.getPositionY();
+        assertEquals(unitMelee.getPositions("x"), baseX - unitMelee.gets("getMoveSpeed"));
+        assertEquals(unitMelee.getPositions("y"), baseY + unitMelee.gets("getMoveSpeed"));
+        baseX = unitMelee.getPositions("x"); baseY = unitMelee.getPositions("y");
 
         // ranged move speed -> 2
         area.removeVirus(unitMelee);
         Virus unitRanged = UnitFactory.createVirus("ranged"); unitRanged.setArea(area); area.addVirus(unitRanged);
         baseX = 0; baseY = 0;
-        unitRanged.setPositionX(baseX); unitRanged.setPositionY(baseY);
+        unitRanged.setPosition("setX", baseX); unitRanged.setPosition("setY", baseY);
         // up
         unitRanged.move("up");
-        assertEquals(unitRanged.getPositionX(), baseX);
-        assertEquals(unitRanged.getPositionY(), baseY + unitRanged.getMoveSpeed());
-        baseX = unitRanged.getPositionX(); baseY = unitRanged.getPositionY();
+        assertEquals(unitRanged.getPositions("x"), baseX);
+        assertEquals(unitRanged.getPositions("y"), baseY + unitRanged.gets("getMoveSpeed"));
+        baseX = unitRanged.getPositions("x"); baseY = unitRanged.getPositions("y");
         // upright
         unitRanged.move("upright");
-        assertEquals(unitRanged.getPositionX(), baseX + unitRanged.getMoveSpeed());
-        assertEquals(unitRanged.getPositionY(), baseY + unitRanged.getMoveSpeed());
-        baseX = unitRanged.getPositionX(); baseY = unitRanged.getPositionY();
+        assertEquals(unitRanged.getPositions("x"), baseX + unitRanged.gets("getMoveSpeed"));
+        assertEquals(unitRanged.getPositions("y"), baseY + unitRanged.gets("getMoveSpeed"));
+        baseX = unitRanged.getPositions("x"); baseY = unitRanged.getPositions("y");
         // right
         unitRanged.move("right");
-        assertEquals(unitRanged.getPositionX(), baseX + unitRanged.getMoveSpeed());
-        assertEquals(unitRanged.getPositionY(), baseY);
-        baseX = unitRanged.getPositionX(); baseY = unitRanged.getPositionY();
+        assertEquals(unitRanged.getPositions("x"), baseX + unitRanged.gets("getMoveSpeed"));
+        assertEquals(unitRanged.getPositions("y"), baseY);
+        baseX = unitRanged.getPositions("x"); baseY = unitRanged.getPositions("y");
         // downright
         unitRanged.move("downright");
-        assertEquals(unitRanged.getPositionX(), baseX + unitRanged.getMoveSpeed());
-        assertEquals(unitRanged.getPositionY(), baseY - unitRanged.getMoveSpeed());
-        baseX = unitRanged.getPositionX(); baseY = unitRanged.getPositionY();
+        assertEquals(unitRanged.getPositions("x"), baseX + unitRanged.gets("getMoveSpeed"));
+        assertEquals(unitRanged.getPositions("y"), baseY - unitRanged.gets("getMoveSpeed"));
+        baseX = unitRanged.getPositions("x"); baseY = unitRanged.getPositions("y");
         // down
         unitRanged.move("down");
-        assertEquals(unitRanged.getPositionX(), baseX);
-        assertEquals(unitRanged.getPositionY(), baseY - unitRanged.getMoveSpeed());
-        baseX = unitRanged.getPositionX(); baseY = unitRanged.getPositionY();
+        assertEquals(unitRanged.getPositions("x"), baseX);
+        assertEquals(unitRanged.getPositions("y"), baseY - unitRanged.gets("getMoveSpeed"));
+        baseX = unitRanged.getPositions("x"); baseY = unitRanged.getPositions("y");
         // downleft
         unitRanged.move("downleft");
-        assertEquals(unitRanged.getPositionX(), baseX - unitRanged.getMoveSpeed());
-        assertEquals(unitRanged.getPositionY(), baseY - unitRanged.getMoveSpeed());
-        baseX = unitRanged.getPositionX(); baseY = unitRanged.getPositionY();
+        assertEquals(unitRanged.getPositions("x"), baseX - unitRanged.gets("getMoveSpeed"));
+        assertEquals(unitRanged.getPositions("y"), baseY - unitRanged.gets("getMoveSpeed"));
+        baseX = unitRanged.getPositions("x"); baseY = unitRanged.getPositions("y");
         // left
         unitRanged.move("left");
-        assertEquals(unitRanged.getPositionX(), baseX - unitRanged.getMoveSpeed());
-        assertEquals(unitRanged.getPositionY(), baseY);
-        baseX = unitRanged.getPositionX(); baseY = unitRanged.getPositionY();
+        assertEquals(unitRanged.getPositions("x"), baseX - unitRanged.gets("getMoveSpeed"));
+        assertEquals(unitRanged.getPositions("y"), baseY);
+        baseX = unitRanged.getPositions("x"); baseY = unitRanged.getPositions("y");
         // upleft
         unitRanged.move("upleft");
-        assertEquals(unitRanged.getPositionX(), baseX - unitRanged.getMoveSpeed());
-        assertEquals(unitRanged.getPositionY(), baseY + unitRanged.getMoveSpeed());
-        baseX = unitRanged.getPositionX(); baseY = unitRanged.getPositionY();
+        assertEquals(unitRanged.getPositions("x"), baseX - unitRanged.gets("getMoveSpeed"));
+        assertEquals(unitRanged.getPositions("y"), baseY + unitRanged.gets("getMoveSpeed"));
+        baseX = unitRanged.getPositions("x"); baseY = unitRanged.getPositions("y");
 
         // aoe move speed -> 1
         area.removeVirus(unitRanged);
         Virus unitAoe = UnitFactory.createVirus("aoe"); unitAoe.setArea(area); area.addVirus(unitAoe);
         baseX = 0; baseY = 0;
-        unitAoe.setPositionX(baseX); unitAoe.setPositionY(baseY);
+        unitAoe.setPosition("setX", baseX); unitAoe.setPosition("setY", baseY);
         // up
         unitAoe.move("up");
-        assertEquals(unitAoe.getPositionX(), baseX);
-        assertEquals(unitAoe.getPositionY(), baseY + unitAoe.getMoveSpeed());
-        baseX = unitAoe.getPositionX(); baseY = unitAoe.getPositionY();
+        assertEquals(unitAoe.getPositions("x"), baseX);
+        assertEquals(unitAoe.getPositions("y"), baseY + unitAoe.gets("getMoveSpeed"));
+        baseX = unitAoe.getPositions("x"); baseY = unitAoe.getPositions("y");
         // upright
         unitAoe.move("upright");
-        assertEquals(unitAoe.getPositionX(), baseX + unitAoe.getMoveSpeed());
-        assertEquals(unitAoe.getPositionY(), baseY + unitAoe.getMoveSpeed());
-        baseX = unitAoe.getPositionX(); baseY = unitAoe.getPositionY();
+        assertEquals(unitAoe.getPositions("x"), baseX + unitAoe.gets("getMoveSpeed"));
+        assertEquals(unitAoe.getPositions("y"), baseY + unitAoe.gets("getMoveSpeed"));
+        baseX = unitAoe.getPositions("x"); baseY = unitAoe.getPositions("y");
         // right
         unitAoe.move("right");
-        assertEquals(unitAoe.getPositionX(), baseX + unitAoe.getMoveSpeed());
-        assertEquals(unitAoe.getPositionY(), baseY);
-        baseX = unitAoe.getPositionX(); baseY = unitAoe.getPositionY();
+        assertEquals(unitAoe.getPositions("x"), baseX + unitAoe.gets("getMoveSpeed"));
+        assertEquals(unitAoe.getPositions("y"), baseY);
+        baseX = unitAoe.getPositions("x"); baseY = unitAoe.getPositions("y");
         // downright
         unitAoe.move("downright");
-        assertEquals(unitAoe.getPositionX(), baseX + unitAoe.getMoveSpeed());
-        assertEquals(unitAoe.getPositionY(), baseY - unitAoe.getMoveSpeed());
-        baseX = unitAoe.getPositionX(); baseY = unitAoe.getPositionY();
+        assertEquals(unitAoe.getPositions("x"), baseX + unitAoe.gets("getMoveSpeed"));
+        assertEquals(unitAoe.getPositions("y"), baseY - unitAoe.gets("getMoveSpeed"));
+        baseX = unitAoe.getPositions("x"); baseY = unitAoe.getPositions("y");
         // down
         unitAoe.move("down");
-        assertEquals(unitAoe.getPositionX(), baseX);
-        assertEquals(unitAoe.getPositionY(), baseY - unitAoe.getMoveSpeed());
-        baseX = unitAoe.getPositionX(); baseY = unitAoe.getPositionY();
+        assertEquals(unitAoe.getPositions("x"), baseX);
+        assertEquals(unitAoe.getPositions("y"), baseY - unitAoe.gets("getMoveSpeed"));
+        baseX = unitAoe.getPositions("x"); baseY = unitAoe.getPositions("y");
         // downleft
         unitAoe.move("downleft");
-        assertEquals(unitAoe.getPositionX(), baseX - unitAoe.getMoveSpeed());
-        assertEquals(unitAoe.getPositionY(), baseY - unitAoe.getMoveSpeed());
-        baseX = unitAoe.getPositionX(); baseY = unitAoe.getPositionY();
+        assertEquals(unitAoe.getPositions("x"), baseX - unitAoe.gets("getMoveSpeed"));
+        assertEquals(unitAoe.getPositions("y"), baseY - unitAoe.gets("getMoveSpeed"));
+        baseX = unitAoe.getPositions("x"); baseY = unitAoe.getPositions("y");
         // left
         unitAoe.move("left");
-        assertEquals(unitAoe.getPositionX(), baseX - unitAoe.getMoveSpeed());
-        assertEquals(unitAoe.getPositionY(), baseY);
-        baseX = unitAoe.getPositionX(); baseY = unitAoe.getPositionY();
+        assertEquals(unitAoe.getPositions("x"), baseX - unitAoe.gets("getMoveSpeed"));
+        assertEquals(unitAoe.getPositions("y"), baseY);
+        baseX = unitAoe.getPositions("x"); baseY = unitAoe.getPositions("y");
         // upleft
         unitAoe.move("upleft");
-        assertEquals(unitAoe.getPositionX(), baseX - unitAoe.getMoveSpeed());
-        assertEquals(unitAoe.getPositionY(), baseY + unitAoe.getMoveSpeed());
-        baseX = unitAoe.getPositionX(); baseY = unitAoe.getPositionY();
+        assertEquals(unitAoe.getPositions("x"), baseX - unitAoe.gets("getMoveSpeed"));
+        assertEquals(unitAoe.getPositions("y"), baseY + unitAoe.gets("getMoveSpeed"));
+        baseX = unitAoe.getPositions("x"); baseY = unitAoe.getPositions("y");
         
         // can't move
         baseX = -100; baseY = 0;
-        unitAoe.setPositionX(baseX); unitAoe.setPositionY(baseY);
+        unitAoe.setPosition("setX", baseX); unitAoe.setPosition("setY", baseY);
         // up
         unitAoe.move("up");
-        assertEquals(unitAoe.getPositionX(), baseX);
-        assertEquals(unitAoe.getPositionY(), baseY);
+        assertEquals(unitAoe.getPositions("x"), baseX);
+        assertEquals(unitAoe.getPositions("y"), baseY);
         // down
         unitAoe.move("down");
-        assertEquals(unitAoe.getPositionX(), baseX);
-        assertEquals(unitAoe.getPositionY(), baseY);
+        assertEquals(unitAoe.getPositions("x"), baseX);
+        assertEquals(unitAoe.getPositions("y"), baseY);
         // downleft
         unitAoe.move("downleft");
-        assertEquals(unitAoe.getPositionX(), baseX);
-        assertEquals(unitAoe.getPositionY(), baseY);
+        assertEquals(unitAoe.getPositions("x"), baseX);
+        assertEquals(unitAoe.getPositions("y"), baseY);
         // left
         unitAoe.move("left");
-        assertEquals(unitAoe.getPositionX(), baseX);
-        assertEquals(unitAoe.getPositionY(), baseY);
+        assertEquals(unitAoe.getPositions("x"), baseX);
+        assertEquals(unitAoe.getPositions("y"), baseY);
         // upleft
         unitAoe.move("upleft");
-        assertEquals(unitAoe.getPositionX(), baseX);
-        assertEquals(unitAoe.getPositionY(), baseY);
+        assertEquals(unitAoe.getPositions("x"), baseX);
+        assertEquals(unitAoe.getPositions("y"), baseY);
 
         baseX = 100; baseY = 0;
-        unitAoe.setPositionX(baseX); unitAoe.setPositionY(baseY);
+        unitAoe.setPosition("setX", baseX); unitAoe.setPosition("setY", baseY);
         // upright
         unitAoe.move("upright");
-        assertEquals(unitAoe.getPositionX(), baseX);
-        assertEquals(unitAoe.getPositionY(), baseY);
+        assertEquals(unitAoe.getPositions("x"), baseX);
+        assertEquals(unitAoe.getPositions("y"), baseY);
         // right
         unitAoe.move("right");
-        assertEquals(unitAoe.getPositionX(), baseX);
-        assertEquals(unitAoe.getPositionY(), baseY);
+        assertEquals(unitAoe.getPositions("x"), baseX);
+        assertEquals(unitAoe.getPositions("y"), baseY);
         // downright
         unitAoe.move("downright");
-        assertEquals(unitAoe.getPositionX(), baseX);
-        assertEquals(unitAoe.getPositionY(), baseY);
+        assertEquals(unitAoe.getPositions("x"), baseX);
+        assertEquals(unitAoe.getPositions("y"), baseY);
 
     }
 
     @Test
     void attackDirection() {
         Config.readFile("config/config_1.txt");
-        Antibody ab_melee = UnitFactory.createAntibody("melee"); ab_melee.setPositionX(0); ab_melee.setPositionY(1); ab_melee.setArea(area);
-        Antibody ab_ranged = UnitFactory.createAntibody("ranged"); ab_ranged.setPositionX(-20); ab_ranged.setPositionY(-20); ab_ranged.setArea(area);
-        Antibody ab_aoe = UnitFactory.createAntibody("aoe"); ab_aoe.setPositionX(0); ab_aoe.setPositionY(10); ab_aoe.setArea(area);
-        Virus v_melee = UnitFactory.createVirus("melee"); v_melee.setPositionX(5); v_melee.setPositionY(10); v_melee.setArea(area);
-        Virus v_ranged = UnitFactory.createVirus("ranged"); v_ranged.setPositionX(-3); v_ranged.setPositionY(1); v_ranged.setArea(area);
-        Virus v_aoe = UnitFactory.createVirus("aoe"); v_aoe.setPositionX(-20); v_aoe.setPositionY(-25); v_aoe.setArea(area);
+        Antibody ab_melee = UnitFactory.createAntibody("melee"); ab_melee.setPosition("setX", 0); ab_melee.setPosition("setY", 1); ab_melee.setArea(area);
+        Antibody ab_ranged = UnitFactory.createAntibody("ranged"); ab_ranged.setPosition("setX", -20); ab_ranged.setPosition("setY", -20); ab_ranged.setArea(area);
+        Antibody ab_aoe = UnitFactory.createAntibody("aoe"); ab_aoe.setPosition("setX", 0); ab_aoe.setPosition("setY", 10); ab_aoe.setArea(area);
+        Virus v_melee = UnitFactory.createVirus("melee"); v_melee.setPosition("setX", 5); v_melee.setPosition("setY", 10); v_melee.setArea(area);
+        Virus v_ranged = UnitFactory.createVirus("ranged"); v_ranged.setPosition("setX", -3); v_ranged.setPosition("setY", 1); v_ranged.setArea(area);
+        Virus v_aoe = UnitFactory.createVirus("aoe"); v_aoe.setPosition("setX", -20); v_aoe.setPosition("setY", -25); v_aoe.setArea(area);
         area.addAntibody(ab_melee); area.addAntibody(ab_ranged); area.addAntibody(ab_aoe);
         area.addVirus(v_melee); area.addVirus(v_ranged); area.addVirus(v_aoe);
 
         // melee attack -> attack range = 10, dmg = 20
         ab_melee.attack("left"); // can attack -> ab_melee attack v_ranged
-        assertEquals(v_ranged.getCurrentHealth(), v_ranged.getMaxHealth() - ab_melee.getAttackDamage());
+        assertEquals(v_ranged.gets("getCurrentHealth"), v_ranged.gets("getMaxHealth") - ab_melee.gets("getAttackDamage"));
         ab_melee.attack("downright"); // can't attack -> nothing happen
 
         // ranged attack -> attack range = 30, dmg = 20
         ab_ranged.attack("down"); // can attack -> ab_ranged attack v_aoe
-        assertEquals(v_aoe.getCurrentHealth(), v_aoe.getMaxHealth() - ab_ranged.getAttackDamage());
+        assertEquals(v_aoe.gets("getCurrentHealth"), v_aoe.gets("getMaxHealth") - ab_ranged.gets("getAttackDamage"));
         ab_ranged.attack("left"); // can't attack -> nothing happen
 
         // aoe attack -> attack range = 20, dmg = 15
         ab_aoe.attack("right"); // can attack -> ab_aoe attack v_melee
-        assertEquals(v_melee.getCurrentHealth(), v_melee.getMaxHealth() - ab_aoe.getAttackDamage());
+        assertEquals(v_melee.gets("getCurrentHealth"), v_melee.gets("getMaxHealth") - ab_aoe.gets("getAttackDamage"));
         ab_aoe.attack("upleft"); // can't attack -> nothing happen
 
     }
@@ -242,21 +242,21 @@ public class UnitTest {
         Virus v_aoe =  UnitFactory.createVirus("aoe");
         // melee attack -> attack range = 10, dmg = 20
         ab_melee.attack(v_melee);
-        assertEquals(v_melee.getCurrentHealth(), v_melee.getMaxHealth() - ab_melee.getAttackDamage());
+        assertEquals(v_melee.gets("getCurrentHealth"), v_melee.gets("getMaxHealth") - ab_melee.gets("getAttackDamage"));
         v_melee.attack(ab_melee);
-        assertEquals(ab_melee.getCurrentHealth(), ab_melee.getMaxHealth() - v_melee.getAttackDamage());
+        assertEquals(ab_melee.gets("getCurrentHealth"), ab_melee.gets("getMaxHealth") - v_melee.gets("getAttackDamage"));
         
         // ranged attack -> attack range = 30, dmg = 20
         ab_ranged.attack(v_ranged);
-        assertEquals(v_ranged.getCurrentHealth(), v_ranged.getMaxHealth() - ab_ranged.getAttackDamage());
+        assertEquals(v_ranged.gets("getCurrentHealth"), v_ranged.gets("getMaxHealth") - ab_ranged.gets("getAttackDamage"));
         v_ranged.attack(ab_ranged);
-        assertEquals(ab_ranged.getCurrentHealth(), ab_ranged.getMaxHealth() - v_ranged.getAttackDamage());
+        assertEquals(ab_ranged.gets("getCurrentHealth"), ab_ranged.gets("getMaxHealth") - v_ranged.gets("getAttackDamage"));
 
         // aoe attack -> attack range = 20, dmg = 15
         ab_aoe.attack(v_aoe);
-        assertEquals(v_aoe.getCurrentHealth(), v_aoe.getMaxHealth() - ab_aoe.getAttackDamage());
+        assertEquals(v_aoe.gets("getCurrentHealth"), v_aoe.gets("getMaxHealth") - ab_aoe.gets("getAttackDamage"));
         v_aoe.attack(ab_aoe);
-        assertEquals(ab_aoe.getCurrentHealth(), ab_aoe.getMaxHealth() - v_aoe.getAttackDamage());
+        assertEquals(ab_aoe.gets("getCurrentHealth"), ab_aoe.gets("getMaxHealth") - v_aoe.gets("getAttackDamage"));
     }
 
     @Test
@@ -266,15 +266,15 @@ public class UnitTest {
         unit.setCurrentHealth(100); unit.maxHealth = 100;
 
         // check max health (100)
-        assertEquals(unit.getMaxHealth(), 100);
+        assertEquals(unit.gets("getMaxHealth"), 100);
 
         // take damage
         unit.takeDamage(1);
-        assertEquals(unit.getCurrentHealth(), unit.getMaxHealth() - 1); // check health (99)
+        assertEquals(unit.gets("getCurrentHealth"), unit.gets("getMaxHealth") - 1); // check health (99)
         unit.takeDamage(50);
-        assertEquals(unit.getCurrentHealth(), unit.getMaxHealth() - 51); // check helath (49)
+        assertEquals(unit.gets("getCurrentHealth"), unit.gets("getMaxHealth") - 51); // check helath (49)
         unit.takeDamage(-999); // don't receive damage
-        assertEquals(unit.getCurrentHealth(), unit.getMaxHealth() - 51); // check helath (49)
+        assertEquals(unit.gets("getCurrentHealth"), unit.gets("getMaxHealth") - 51); // check helath (49)
         unit.takeDamage(100); // unit is dead
         assertFalse(unit.isAlive());
     }
@@ -282,12 +282,12 @@ public class UnitTest {
     @Test
     void sense() {
         Config.readFile("config/config_1.txt");
-        Antibody ab_melee = UnitFactory.createAntibody("melee"); ab_melee.setPositionX(0); ab_melee.setPositionY(1); ab_melee.setArea(area);
-        Antibody ab_ranged = UnitFactory.createAntibody("ranged"); ab_ranged.setPositionX(-20); ab_ranged.setPositionY(-20); ab_ranged.setArea(area);
-        Antibody ab_aoe = UnitFactory.createAntibody("aoe"); ab_aoe.setPositionX(0); ab_aoe.setPositionY(10); ab_aoe.setArea(area);
-        Virus v_melee = UnitFactory.createVirus("melee"); v_melee.setPositionX(5); v_melee.setPositionY(10); v_melee.setArea(area);
-        Virus v_ranged = UnitFactory.createVirus("ranged"); v_ranged.setPositionX(-3); v_ranged.setPositionY(1); v_ranged.setArea(area);
-        Virus v_aoe = UnitFactory.createVirus("aoe"); v_aoe.setPositionX(-20); v_aoe.setPositionY(-25); v_aoe.setArea(area);
+        Antibody ab_melee = UnitFactory.createAntibody("melee"); ab_melee.setPosition("setX", 0); ab_melee.setPosition("setY", 1); ab_melee.setArea(area);
+        Antibody ab_ranged = UnitFactory.createAntibody("ranged"); ab_ranged.setPosition("setX", -20); ab_ranged.setPosition("setY", -20); ab_ranged.setArea(area);
+        Antibody ab_aoe = UnitFactory.createAntibody("aoe"); ab_aoe.setPosition("setX", 0); ab_aoe.setPosition("setY", 10); ab_aoe.setArea(area);
+        Virus v_melee = UnitFactory.createVirus("melee"); v_melee.setPosition("setX", 5); v_melee.setPosition("setY", 10); v_melee.setArea(area);
+        Virus v_ranged = UnitFactory.createVirus("ranged"); v_ranged.setPosition("setX", -3); v_ranged.setPosition("setY", 1); v_ranged.setArea(area);
+        Virus v_aoe = UnitFactory.createVirus("aoe"); v_aoe.setPosition("setX", -20); v_aoe.setPosition("setY", -25); v_aoe.setArea(area);
         area.addAntibody(ab_melee); area.addAntibody(ab_ranged); area.addAntibody(ab_aoe);
         area.addVirus(v_melee); area.addVirus(v_ranged); area.addVirus(v_aoe);
 
@@ -371,12 +371,12 @@ public class UnitTest {
     @Test
     void findClosestUnit() {
         Config.readFile("config/config_1.txt");
-        Antibody ab_melee = UnitFactory.createAntibody("melee"); ab_melee.setPositionX(0); ab_melee.setPositionY(1); ab_melee.setArea(area);
-        Antibody ab_ranged = UnitFactory.createAntibody("ranged"); ab_ranged.setPositionX(-20); ab_ranged.setPositionY(-20); ab_ranged.setArea(area);
-        Antibody ab_aoe = UnitFactory.createAntibody("aoe"); ab_aoe.setPositionX(0); ab_aoe.setPositionY(10); ab_aoe.setArea(area);
-        Virus v_melee = UnitFactory.createVirus("melee"); v_melee.setPositionX(5); v_melee.setPositionY(10); v_melee.setArea(area);
-        Virus v_ranged = UnitFactory.createVirus("ranged"); v_ranged.setPositionX(-3); v_ranged.setPositionY(1); v_ranged.setArea(area);
-        Virus v_aoe = UnitFactory.createVirus("aoe"); v_aoe.setPositionX(-20); v_aoe.setPositionY(-25); v_aoe.setArea(area);
+        Antibody ab_melee = UnitFactory.createAntibody("melee"); ab_melee.setPosition("setX", 0); ab_melee.setPosition("setY", 1); ab_melee.setArea(area);
+        Antibody ab_ranged = UnitFactory.createAntibody("ranged"); ab_ranged.setPosition("setX", -20); ab_ranged.setPosition("setY", -20); ab_ranged.setArea(area);
+        Antibody ab_aoe = UnitFactory.createAntibody("aoe"); ab_aoe.setPosition("setX", 0); ab_aoe.setPosition("setY", 10); ab_aoe.setArea(area);
+        Virus v_melee = UnitFactory.createVirus("melee"); v_melee.setPosition("setX", 5); v_melee.setPosition("setY", 10); v_melee.setArea(area);
+        Virus v_ranged = UnitFactory.createVirus("ranged"); v_ranged.setPosition("setX", -3); v_ranged.setPosition("setY", 1); v_ranged.setArea(area);
+        Virus v_aoe = UnitFactory.createVirus("aoe"); v_aoe.setPosition("setX", -20); v_aoe.setPosition("setY", -25); v_aoe.setArea(area);
         area.addAntibody(ab_melee); area.addAntibody(ab_ranged); area.addAntibody(ab_aoe);
         area.addVirus(v_melee); area.addVirus(v_ranged); area.addVirus(v_aoe);
 
@@ -393,12 +393,12 @@ public class UnitTest {
     @Test
     void findClosestUnitDirection() {
         Config.readFile("config/config_1.txt");
-        Antibody ab_melee = UnitFactory.createAntibody("melee"); ab_melee.setPositionX(0); ab_melee.setPositionY(1); ab_melee.setArea(area);
-        Antibody ab_ranged = UnitFactory.createAntibody("ranged"); ab_ranged.setPositionX(-20); ab_ranged.setPositionY(-20); ab_ranged.setArea(area);
-        Antibody ab_aoe = UnitFactory.createAntibody("aoe"); ab_aoe.setPositionX(0); ab_aoe.setPositionY(10); ab_aoe.setArea(area);
-        Virus v_melee = UnitFactory.createVirus("melee"); v_melee.setPositionX(5); v_melee.setPositionY(10); v_melee.setArea(area);
-        Virus v_ranged = UnitFactory.createVirus("ranged"); v_ranged.setPositionX(-3); v_ranged.setPositionY(1); v_ranged.setArea(area);
-        Virus v_aoe = UnitFactory.createVirus("aoe"); v_aoe.setPositionX(-20); v_aoe.setPositionY(-25); v_aoe.setArea(area);
+        Antibody ab_melee = UnitFactory.createAntibody("melee"); ab_melee.setPosition("setX", 0); ab_melee.setPosition("setY", 1); ab_melee.setArea(area);
+        Antibody ab_ranged = UnitFactory.createAntibody("ranged"); ab_ranged.setPosition("setX", -20); ab_ranged.setPosition("setY", -20); ab_ranged.setArea(area);
+        Antibody ab_aoe = UnitFactory.createAntibody("aoe"); ab_aoe.setPosition("setX", 0); ab_aoe.setPosition("setY", 10); ab_aoe.setArea(area);
+        Virus v_melee = UnitFactory.createVirus("melee"); v_melee.setPosition("setX", 5); v_melee.setPosition("setY", 10); v_melee.setArea(area);
+        Virus v_ranged = UnitFactory.createVirus("ranged"); v_ranged.setPosition("setX", -3); v_ranged.setPosition("setY", 1); v_ranged.setArea(area);
+        Virus v_aoe = UnitFactory.createVirus("aoe"); v_aoe.setPosition("setX", -20); v_aoe.setPosition("setY", -25); v_aoe.setArea(area);
         area.addAntibody(ab_melee); area.addAntibody(ab_ranged); area.addAntibody(ab_aoe);
         area.addVirus(v_melee); area.addVirus(v_ranged); area.addVirus(v_aoe);
 

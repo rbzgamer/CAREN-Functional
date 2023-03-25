@@ -55,8 +55,8 @@ public class Antibody extends Unit{
         Virus reborn = UnitFactory.createVirus(this.getType());
         this.area.removeAntibody(this);
         q.add(reborn);
-        reborn.setPositionX(this.getPositionX());
-        reborn.setPositionY(this.getPositionY());
+        reborn.setPosition("setX", this.getPositions("x"));
+        reborn.setPosition("setY", this.getPositions("y"));
 
     }
 

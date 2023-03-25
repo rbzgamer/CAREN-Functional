@@ -129,7 +129,7 @@ public class Area {
     // Impure function: Output depend on the current state of positionX and positionY (give same input doesn't get the same output)
     // Refactor: Using stream instead of for loop
     public boolean canPlace(double positionX, double positionY){
-        return units.stream().noneMatch(u -> u.getPositionX() == positionX && u.getPositionY() == positionY);
+        return units.stream().noneMatch(u -> u.getPositions("x") == positionX && u.getPositions("y") == positionY);
     }
 
     // Impure function: Doesn't modify state, But output depend on value of alertLevel (give same input doesn't get the same output)

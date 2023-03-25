@@ -17,14 +17,14 @@ public class AntibodyTest {
     @Test
     void virusToSpawn() {
         area.addAntibody(antibody);
-        antibody.setPositionX(0); antibody.setPositionY(10);
-        while(antibody.getCurrentHealth() > 0){
+        antibody.setPosition("setX", 0); antibody.setPosition("setY", 10);
+        while(antibody.gets("getCurrentHealth") > 0){
             virusGod.attack(antibody);
         }
         antibody.virusToSpawn(queueVirus);
         assertEquals(queueVirus.size(), 1);
-        assertEquals(queueVirus.get(0).getPositionX(),0);
-        assertEquals(queueVirus.get(0).getPositionY(), 10);
+        assertEquals(queueVirus.get(0).getPositions("x"),0);
+        assertEquals(queueVirus.get(0).getPositions("y"), 10);
         assertEquals(area.getAntibodies().size(),0);
     }
 }

@@ -105,7 +105,7 @@ public class InventoryController {
                         }else {
                             game.getQueueAntibobyArea3().add(ab);
                         }
-                        ab.setPositionX(positionX); ab.setPositionY(positionY);
+                        ab.setPosition("setX", positionX); ab.setPosition("setY", positionY);
                         ab.setToSpawn(true);
                         return "Pick up Melee Success";
                     }
@@ -120,7 +120,7 @@ public class InventoryController {
                         }else {
                             game.getQueueAntibobyArea3().add(ab);
                         }
-                        ab.setPositionX(positionX); ab.setPositionY(positionY);
+                        ab.setPosition("setX", positionX); ab.setPosition("setY", positionY);
                         ab.setToSpawn(true);
                         return "Pick up Ranged Success";
                     }
@@ -135,7 +135,7 @@ public class InventoryController {
                         }else {
                             game.getQueueAntibobyArea3().add(ab);
                         }
-                        ab.setPositionX(positionX); ab.setPositionY(positionY);
+                        ab.setPosition("setX", positionX); ab.setPosition("setY", positionY);
                         ab.setToSpawn(true);
                         return "Pick up AOE Success";
                     }

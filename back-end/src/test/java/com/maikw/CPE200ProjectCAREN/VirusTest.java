@@ -10,7 +10,7 @@ public class VirusTest {
 
     @Test
     void creditReward() {
-        while(virus.getCurrentHealth() > 0){
+        while(virus.gets("getCurrentHealth") > 0){
             antibodyGod.attack(virus);
         }
         assertEquals(virus.creditReward(), 50);

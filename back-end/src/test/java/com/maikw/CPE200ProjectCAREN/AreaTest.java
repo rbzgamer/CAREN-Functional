@@ -144,11 +144,11 @@ public class AreaTest {
         area.addAllVirus(viruses);
         for(int i = 0; i < 3 ; i++){
             antibodies.add(abs_melee[i]);
-            abs_melee[i].setPositionX(0.0+i); abs_melee[i].setPositionY(0.0-i);
+            abs_melee[i].setPosition("setX", 0.0+i); abs_melee[i].setPosition("setY", 0.0-i);
             antibodies.add(abs_ranged[i]);
-            abs_ranged[i].setPositionX(0.0+(2*i)); abs_ranged[i].setPositionY(0.0-(2*i));
+            abs_ranged[i].setPosition("setX", 0.0+(2*i)); abs_ranged[i].setPosition("setY", 0.0-(2*i));
             antibodies.add(abs_aoe[i]);
-            abs_aoe[i].setPositionX(0.0+(3*i)); abs_aoe[i].setPositionY(0.0-(3*i));
+            abs_aoe[i].setPosition("setX", 0.0+(3*i)); abs_aoe[i].setPosition("setY", 0.0-(3*i));
         }
         area.addAllAntibody(antibodies);
         units = area.getUnits();
