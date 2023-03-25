@@ -48,7 +48,7 @@ public class Game implements Runnable{
     }
 
     // Impure function: Modifies everything
-    // Refactor: Combining putVirusToAllArea() and evaluateAreas() into method
+    // Refactor: Use Math.min instead of if statement , combining putVirusToAllArea() and evaluateAreas() into method
     public void startGameLoop(){
         waitState(5);
         waveManager.addVirus();
@@ -93,11 +93,7 @@ public class Game implements Runnable{
                 while(vsIterator.hasNext()){
                     Virus vs = vsIterator.next();
                     if(!vs.isAlive()){
-                        if(this.shop.getCurrentCredit() + vs.creditReward() <= shop.getMaxCredit()){
-                            this.shop.setCurrentCredit(this.shop.getCurrentCredit() + vs.creditReward());
-                        }else {
-                            this.shop.setCurrentCredit(this.shop.getMaxCredit());
-                        }
+                        this.shop.setCurrentCredit(Math.min(this.shop.getCurrentCredit() + vs.creditReward(), shop.getMaxCredit()));
                         vsIterator.remove();
                         areas.get(i).removeVirus(vs);
                     }
