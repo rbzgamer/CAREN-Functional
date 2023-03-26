@@ -99,26 +99,25 @@ public class Area {
     }
 
     // Impure function: Modifies state of units
-    //Refactor use stream.forEach replace while loop
     public void evaluate() {
         Iterator<Unit> unitIterator = units.iterator();
-        units.stream().forEach(u -> {
-            if (u.isAlive()) {
-                u.setDidActionCommand(false);
-                u.evaluate();
+        while (unitIterator.hasNext()) {
+            Unit unit = unitIterator.next();
+            if (unit.isAlive()) {
+                unit.setDidActionCommand(false);
+                unit.evaluate();
             } else { // if Unit is DEAD
-                if (u.unitClass.equals("antibody")) {
+                if (unit.unitClass.equals("antibody")) {
                     unitIterator.remove();
-                    if (u.toSpawn) {
-                        ((Antibody) u).virusToSpawn(rebornQueue);
+                    if (unit.toSpawn) {
+                        ((Antibody) unit).virusToSpawn(rebornQueue);
                     } else {
-                        u.setArea(null);
+                        unit.setArea(null);
                     }
-                    removeAntibody((Antibody) u);
+                    removeAntibody((Antibody) unit);
                 }
             }
-        });
-
+        }
     }
 
     // Impure function: Modifies viruses
